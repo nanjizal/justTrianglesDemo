@@ -1,0 +1,4 @@
+-cmd haxelib git justDrawing https://github.com/nanjizal/justTriangles.git
+-cmd haxelib git htmlHelper https://github.com/nanjizal/htmlHelper.git
+-cmd haxelib git khaMath https://github.com/nanjizal/khaMath
+-cmd haxe compile.hxml
