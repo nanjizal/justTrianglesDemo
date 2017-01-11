@@ -7,7 +7,9 @@ import justTriangles.Draw;
 import justTriangles.Point;
 import justTriangles.PathContext;
 import justTriangles.ShapePoints;
+import justTriangles.QuickPaths;
 import htmlHelper.tools.CSSEnterFrame;
+using justTriangles.QuickPaths;
 @:enum
 abstract RainbowColors( Int ){
     var Violet = 0x9400D3;
@@ -35,26 +37,18 @@ class Demo {
         Draw.colorFill_id = 1;
         Draw.colorLine_id = 3;
         Draw.extraFill_id = 1;
-        var ctx = new PathContext( 1, 200 );
+        var ctx;
         var thick = Math.random()*20;
-        ctx.moveTo(75,40);
-        ctx.curveTo(75,37,70,25,50,25);
-        ctx.curveTo(20,25,20,62.5,20,62.5);
-        ctx.curveTo(20,80,40,102,75,120);
-        ctx.curveTo(110,102,130,80,130,62.5);
-        ctx.curveTo(130,62.5,130,25,100,25);
-        ctx.curveTo(85,25,75,37,75,40);
-        ctx.render( 1);
-        ctx.clear();
-        ctx = new PathContext( 1, 200, 200, 100 );
-        ctx.moveTo(75,25);
-        ctx.quadTo(25,25,25,62.5);
-        ctx.quadTo(25,100,50,100);
-        ctx.quadTo(50,120,30,125);
-        ctx.quadTo(60,120,65,100);
-        ctx.quadTo(125,100,125,62.5);
-        ctx.quadTo(125,25,75,25);
-        ctx.render( 1 );
+        linesTest();
+        ctx = new PathContext( 1, 200, 30, 30 );
+        ctx.roundedRectangle( 100, 75, 150, 60, 5 );
+        ctx.speechBubble();
+        ctx.heart();
+        ctx.regularPoly( PathContext.circleSides, 100, 100, 100, 0 );
+        ctx.arc_move( 100, 75, 50, 0, Math.PI, clockwise, hexacontagon );
+        ctx.render( thick, false ); 
+    }
+    public function linesTest(){
         var thick: Float = (Math.random()*20)/800;
         var rndEnds = [ true, false ];
         for( i in 0...12 ){
@@ -66,29 +60,5 @@ class Demo {
             thick = ( Math.random()*20 )/800;
             Draw.isolatedLine( 0, { x: (300 + Math.random()*800)/800 - 0.5, y: ( -200 + Math.random()*800 )/800 }, { x: ( 300 + Math.random()*800 )/800 - 0.5,y: (-200 + Math.random()*800)/800 }, thick, roundEnd  );
         }
-        var thick = Math.random()*20;
-        ctx.roundedRectangle( 100, 75, 150, 60, 5 );
-        var ctx = new PathContext( 1, 200 );
-        ctx.roundedRectangle( 100, 75, 150, 60, 5 );
-        ctx.moveTo(75,40);
-        ctx.curveTo(75,37,70,25,50,25);
-        ctx.curveTo(20,25,20,62.5,20,62.5);
-        ctx.curveTo(20,80,40,102,75,120);
-        ctx.curveTo(110,102,130,80,130,62.5);
-        ctx.curveTo(130,62.5,130,25,100,25);
-        ctx.curveTo(85,25,75,37,75,40);
-        ctx.render( thick, false );
-        ctx.clear();
-        ctx = new PathContext( 1, 200, 200, 100 );
-        ctx.moveTo(75,25);
-        ctx.quadTo(25,25,25,62.5);
-        ctx.quadTo(25,100,50,100);
-        ctx.quadTo(50,120,30,125);
-        ctx.quadTo(60,120,65,100);
-        ctx.quadTo(125,100,125,62.5);
-        ctx.quadTo(125,25,75,25);
-        ctx.regularPoly( PathContext.circleSides, 100, 100, 100, 0 );
-        ctx.arc_move( 100, 75, 50, 0, Math.PI, clockwise, hexacontagon );
-        ctx.render( thick, false ); 
     }
 }
