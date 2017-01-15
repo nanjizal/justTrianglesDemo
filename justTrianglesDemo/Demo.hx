@@ -19,15 +19,16 @@ abstract RainbowColors( Int ){
     var Yellow = 0xFFFF00;
     var Orange = 0xFF7F00;
     var Red    = 0xFF0000;
+    var Black  = 0x000000;
 }
 class Demo {
-    var rainbow = [ Red, Orange, Yellow, Green, Blue, Indigo, Violet ];   
+    var rainbow = [ Black, Red, Orange, Yellow, Green, Blue, Indigo, Violet ];   
     public function new(){
         var webgl = WebGLDrawing.create( 570*2 );
         draw();
         webgl.setTriangles( Triangle.triangles, cast rainbow );
-        webgl.modelViewProjection = Matrix4.rotationZ( Math.PI / 4 );
-        webgl.transformationFunc = spin;
+        //webgl.modelViewProjection = Matrix4.rotationZ( Math.PI / 4 );
+        //webgl.transformationFunc = spin;
     }
     var theta: Float = 0;
     inline function spin(): Matrix4{
@@ -35,19 +36,30 @@ class Demo {
     }
     public function draw(){
         Draw.colorFill_id = 1;
-        Draw.colorLine_id = 3;
-        Draw.extraFill_id = 1;
+        Draw.colorLine_id = 0;
+        Draw.colorLine_id = 7;
+        Draw.extraFill_id = 2;
         var ctx;
-        var thick = Math.random()*20;
-        linesTest();
-        ctx = new PathContext( 1, 200, 30, 30 );
-        ctx.roundedRectangle( 100, 75, 150, 60, 5 );
-        ctx.speechBubble();
-        ctx.heart();
+        var thick = 20;
+        ctx = new PathContext( 30, 200, 30, 30 );
+        ctx.lineType = TriangleJoin; // arc, straight - default
+        //ctx.lineType = Poly; // polygons
+        //ctx.lineType = Round;
+        //ctx.lineType = Isolated;  // okish lines
+        //ctx.lineType = Quad;
+        //ctx.lineType = Curves; // curves
+        ctx.speechBubble( 1, 1, 0, 0 );
+        ctx.heart( 1, 1, 200, 0 );
+        ctx.roundedRectangle( 100, 300, 150, 60, 5 );
+        //linesTest();
         ctx.regularPoly( PathContext.circleSides, 100, 100, 100, 0 );
-        ctx.arc_move( 100, 75, 50, 0, Math.PI, clockwise, hexacontagon );
+        ctx.arc_move( 300, 200, 50, 0, Math.PI, clockwise, hexacontagon );
+        ctx.moveTo( 50 + 200*Math.random(), 50+ 200*Math.random() );
+        for( i in 0...10 ) ctx.lineTo( 50 + 200*Math.random(), 200+ 90*Math.random() ); 
         ctx.render( thick, false ); 
     }
+    
+    
     public function linesTest(){
         var thick: Float = (Math.random()*20)/800;
         var rndEnds = [ true, false ];
