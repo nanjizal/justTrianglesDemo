@@ -39,23 +39,61 @@ class Demo {
         Draw.colorLine_id = 0;
         Draw.colorLine_id = 7;
         Draw.extraFill_id = 2;
+        var aCol =  Math.round( Math.random()*(rainbow.length-1));
+        Draw.colorFill_id = aCol;
+        Draw.colorLine_id = aCol;
+        Draw.extraFill_id = aCol;
         var ctx;
         var thick = 20;
         ctx = new PathContext( 30, 200, 30, 30 );
-        ctx.lineType = TriangleJoin; // arc, straight - default
+        ctx.lineType = TriangleJoinCurve; // - default
+        
+        
+        ctx.moveTo( 50, 50 );
+        var up = 0;
+        var down = 100;
+        var direction = up;
+        var p = [ 60, 50, 70, 50, 80, 50, 90, 50, 90, direction, 80, direction - 10 ];
+        var l = p.length;
+        for( i in 0...l ){
+            if( (i & 1) == 0 ){
+                ctx.lineTo( p[i], p[i+1] );
+            }
+        }
+        
+        ctx.moveTo( 50, 70 );
+
+        var direction = down;
+        var p = [ 60, 70, 70, 70, 80, 70, 90, 70, 90, direction, 100, direction - 10 ];
+        var l = p.length;
+        for( i in 0...l ){
+            if( (i & 1) == 0 ){
+                ctx.lineTo( p[i], p[i+1] );
+            }
+        }
+        
+        //ctx.lineType = TriangleJoinCurve; // arc- Default seems to work quite well, but WIP.
+        //ctx.lineType = TriangleJoinStraight; // straight 
         //ctx.lineType = Poly; // polygons
         //ctx.lineType = Round;
         //ctx.lineType = Isolated;  // okish lines
         //ctx.lineType = Quad;
         //ctx.lineType = Curves; // curves
+        
+        
         ctx.speechBubble( 1, 1, 0, 0 );
+        
         ctx.heart( 1, 1, 200, 0 );
         ctx.roundedRectangle( 100, 300, 150, 60, 5 );
-        //linesTest();
+        linesTest();
         ctx.regularPoly( PathContext.circleSides, 100, 100, 100, 0 );
-        ctx.arc_move( 300, 200, 50, 0, Math.PI, clockwise, hexacontagon );
+        
+        ctx.arc_move( 300, 200, 50, 0, Math.PI, counterClockwise, hexacontagon );
+        
         ctx.moveTo( 50 + 200*Math.random(), 50+ 200*Math.random() );
         for( i in 0...10 ) ctx.lineTo( 50 + 200*Math.random(), 200+ 90*Math.random() ); 
+        
+        
         ctx.render( thick, false ); 
     }
     
