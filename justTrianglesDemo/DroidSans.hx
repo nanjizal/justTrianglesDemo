@@ -25,33 +25,6 @@ class DroidSans {
                 { ax:551, d:"M336 414H215L164 1462H387L336 414ZM147 111Q147 149 157 175T184 218T224 242T274 250Q300 250 323 243T364 219T391 176T401 111Q401 74 391 48T364 4T324 -21T274 -29Q247 -29 224 -21T184 4T157 47T147 111Z" };
                 
             case '"'.code:
-package justTrianglesDemo;
-// source https://dev.w3.org/SVG/tools/svgweb/samples/svg-files/
-typedef Glyph = {
-    var ax: Int;
-    var d: String;
-}
-class DroidSans {
-    
-    // generic font stuff probably not that relevant to me?
-    public static var horiz_adv_x = "1177";
-    public static var font_family = "Droid Sans";
-    public static var units_per_em = "2048";
-    public static var panose_1 = "2 11 6 6 3 8 4 2 2 4";//??
-    public static var ascent = "1901";
-    public static var descent = "-483";
-    public static var alphabetic = "0";
-    
-    // what is this ? also prob not critical.
-    //<missing-glyph ax:"1229", d:"M193 1462H1034V0H193V1462ZM297 104H930V1358H297V104Z" />
-    
-    public static inline function getSymbol( c: Int ): Glyph {
-        return switch( c ){
-            
-            case '!'.code:
-                { ax:551, d:"M336 414H215L164 1462H387L336 414ZM147 111Q147 149 157 175T184 218T224 242T274 250Q300 250 323 243T364 219T391 176T401 111Q401 74 391 48T364 4T324 -21T274 -29Q247 -29 224 -21T184 4T157 47T147 111Z" };
-                
-            case '"'.code:
                 { ax:823, d:"M330 1462L289 934H174L133 1462H330ZM690 1462L649 934H535L494 1462H690Z" };
                 
             case '#'.code:
