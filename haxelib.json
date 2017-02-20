@@ -7,12 +7,14 @@
     "Nanjizal"
   ],
 	"releasenote": "See https://github.com/nanjizal/justTrianglesDemo/blob/master/readme.md",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"url": "https://github.com/nanjizal/justTrianglesDemo",
 	"classPath": "/",
 	"dependencies": {
     "khaMath",
     "justTriangles",
+    "justTrianglesWebGL"
     "htmlHelper"
   }
 }
+
